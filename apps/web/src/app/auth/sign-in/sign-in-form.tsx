@@ -13,36 +13,16 @@ import { Separator } from '@/components/ui/separator'
 import gitHubIcon from '@/assets/github-icon.svg'
 
 import { signInWithEmailAndPassword } from './actions'
-import { SyntheticEvent, useState, useTransition } from 'react'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { useFormState } from '@/app/hooks/use-form-state'
 
 export function SignInForm() {
-  const [isPending, startTransition] = useTransition()
-
-  const [{ success, message, errors }, setFormState] = useState<{
-    success: boolean
-    message: string | null
-    errors: Record<string, string[]> | null
-  }>({
-    success: false,
-    message: null,
-    errors: null,
-  })
-
-  async function handleSignIn(event: SyntheticEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    const form = event.currentTarget
-    const data = new FormData(form)
-
-    startTransition(async () => {
-      const state = await signInWithEmailAndPassword(data)
-      setFormState(state)
-    })
-  }
+  const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
+    signInWithEmailAndPassword
+  )
 
   return (
-    <form onSubmit={handleSignIn} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4">
       {success === false && message && (
         <Alert variant={'destructive'}>
           <AlertTriangle className="size-4" />
