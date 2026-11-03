@@ -16,6 +16,7 @@ import { signInWithEmailAndPassword } from './actions'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useFormState } from '@/app/hooks/use-form-state'
 import { signInWithGithub } from '../actions'
+import { redirect } from 'next/navigation'
 
 export function SignInForm() {
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
