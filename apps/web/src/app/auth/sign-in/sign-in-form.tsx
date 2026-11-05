@@ -16,12 +16,20 @@ import { signInWithEmailAndPassword } from './actions'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useFormState } from '@/app/hooks/use-form-state'
 import { signInWithGithub } from '../actions'
-import { redirect } from 'next/navigation'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export function SignInForm() {
+  const router = useRouter()
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
     signInWithEmailAndPassword
   )
+
+  useEffect(() => {
+    if (success) {
+      router.push('/')
+    }
+  }, [success, router])
 
   return (
     <div className="space-y-4">
