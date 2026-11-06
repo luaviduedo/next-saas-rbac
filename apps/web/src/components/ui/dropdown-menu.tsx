@@ -79,22 +79,35 @@ function DropdownMenuItem({
   className,
   inset,
   variant = 'default',
+  asChild = false,
+  render,
+  children,
   ...props
 }: MenuPrimitive.Item.Props & {
   inset?: boolean
   variant?: 'default' | 'destructive'
+  /**
+   * Compatibilidade com a API do Radix UI. O Base UI não tem `asChild`;
+   * internamente o elemento filho é convertido para a prop `render`.
+   */
+  asChild?: boolean
 }) {
+  const child = asChild && React.isValidElement(children) ? children : undefined
+
   return (
     <MenuPrimitive.Item
       data-slot="dropdown-menu-item"
       data-inset={inset}
       data-variant={variant}
+      render={child ?? render}
       className={cn(
         "group/dropdown-menu-item focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:*:[svg]:text-destructive relative flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
-    />
+    >
+      {child ? undefined : children}
+    </MenuPrimitive.Item>
   )
 }
 
