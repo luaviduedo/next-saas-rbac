@@ -3,14 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "pnpm env:load next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
     "@radix-ui/react-slot": "^1.5.0",
     "@saas/auth": "workspace:*",
+    "@saas/env": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.0",
     "cookies-next": "^6.1.1",
@@ -32,6 +34,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv-cli": "^11.0.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

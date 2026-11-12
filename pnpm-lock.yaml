@@ -96,6 +96,9 @@ importers:
       '@saas/auth':
         specifier: workspace:*
         version: link:../../packages/auth
+      '@saas/env':
+        specifier: workspace:*
+        version: link:../../packages/env
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -154,6 +157,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.3.0(@types/react@19.2.17)
+      dotenv-cli:
+        specifier: ^11.0.0
+        version: 11.0.0
       tailwindcss:
         specifier: ^4
         version: 4.3.3
