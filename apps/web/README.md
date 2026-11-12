@@ -24,7 +24,7 @@ Not wired yet:
 Run from the repository root:
 
 ```bash
-pnpm --filter web dev
+pnpm --filter @saas/web dev
 ```
 
 The app runs at <http://localhost:3000> and expects the API at <http://localhost:3333>.

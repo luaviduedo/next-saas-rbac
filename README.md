@@ -251,7 +251,7 @@ See the [ER diagram](./docs/architecture.md#data-model) for relationships and de
 | `pnpm lint` | root | Declared, but no workspace has a `lint` script yet |
 | `pnpm check-types` | root | Declared, but no workspace has a `check-types` script yet |
 | `pnpm --filter @saas/api dev` | API | Fastify with `tsx watch` |
-| `pnpm --filter web dev` | web | Next.js dev server (Turbopack) |
+| `pnpm --filter @saas/web dev` | web | Next.js dev server (Turbopack) |
 
 The API is a single Fastify process; every route file exports a plugin that is registered in `apps/api/src/http/server.ts`.
 
