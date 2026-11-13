@@ -10,7 +10,7 @@ import { ThemeSwitcher } from './theme/theme-switcher'
 export async function Header() {
   const permissions = await ability()
   return (
-    <div className="mex-w-[1280px] items=center mx-auto flex justify-between">
+    <div className="mx-auto flex max-w-[1280px] items-center justify-between border-b pb-2">
       <div className="flex items-center gap-3">
         <Image src={logoIcon} className="size-6 dark:invert" alt="logo" />
 
