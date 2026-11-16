@@ -1,7 +1,6 @@
 'use server'
 
 import { z } from 'zod'
-import { redirect } from 'next/navigation'
 
 import { HTTPError } from 'ky'
 import { signUp } from '@/http/sign-up'
