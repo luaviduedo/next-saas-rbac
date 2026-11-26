@@ -3,7 +3,8 @@
 import { z } from 'zod'
 
 import { HTTPError } from 'ky'
-// import { createProject } from '@/http/create-project'
+import { getCurrentOrg } from '@/auth/auth'
+import { createProject } from '@/http/create-project'
 
 const projectSchema = z.object({
   name: z
@@ -23,11 +24,15 @@ export async function createProjectAction(data: FormData) {
   const { name, description } = result.data
 
   try {
-    // await createProject({
-    //   name,
-    //   domain,
-    //   shouldAttachUsersByDomain,
-    // })
+    const org = await getCurrentOrg()
+    if (!org) {
+      throw new Error('Nenhuma organização atual definida')
+    }
+    await createProject({
+      org,
+      name,
+      description,
+    })
   } catch (err) {
     if (err instanceof HTTPError) {
       const { message } = await err.data
